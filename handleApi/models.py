@@ -17,8 +17,8 @@ def generateUniqueCode():
 # Create your models here.
 
 class Room(models.Model):
-    code = models.CharField(max_length=8, default="", unique=True)
+    code = models.CharField(max_length=8, default=generateUniqueCode, unique=True)
     host = models.CharField(max_length=50, unique=True)
-    guestCanPause = models.BooleanField(null=False, default=False)
+    guestCanPause = models.BooleanFie ld(null=False, default=False)
     votesToSkip = models.IntegerField(null=False, default=1)
     createdAt = models.DateTimeField(auto_now_add=True)
