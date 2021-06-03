@@ -40,6 +40,18 @@ export default class CreateRoomPage extends Component {
 
 	handleCreateRoom() {
 		console.log(this.state);
+		const requestOptions = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				votesToSkip: this.state.votesToSkip,
+				guestCanPause: this.state.guestsCanPause,
+			}),
+		};
+		fetch("/api/create-room/", requestOptions)
+			.then((response) => response.json())
+			.then((data) => console.log(data))
+			.catch((error) => console.log(error));
 	}
 
 	render() {
