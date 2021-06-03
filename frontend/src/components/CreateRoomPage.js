@@ -16,6 +16,30 @@ export default class CreateRoomPage extends Component {
 	defaultVotes = 2;
 	constructor(props) {
 		super(props);
+		this.state = {
+			guestsCanPause: true,
+			votesToSkip: this.defaultVotes,
+		};
+
+		this.handleCreateRoom = this.handleCreateRoom.bind(this);
+		this.handleGuestCanPause = this.handleGuestCanPause.bind(this);
+		this.handleVotes = this.handleVotes.bind(this);
+	}
+
+	handleVotes(e) {
+		this.setState({
+			votesToSkip: e.target.value,
+		});
+	}
+
+	handleGuestCanPause(e) {
+		this.setState({
+			guestsCanPause: e.target.value === "true" ? true : false,
+		});
+	}
+
+	handleCreateRoom() {
+		console.log(this.state);
 	}
 
 	render() {
@@ -33,7 +57,11 @@ export default class CreateRoomPage extends Component {
 								Guest Control of Playback State
 							</div>
 						</FormHelperText>
-						<RadioGroup row defaultValue="true">
+						<RadioGroup
+							onChange={this.handleGuestCanPause}
+							row
+							defaultValue="true"
+						>
 							<FormControlLabel
 								value="true"
 								control={<Radio color="primary" />}
@@ -52,6 +80,7 @@ export default class CreateRoomPage extends Component {
 				<Grid item xs={12} align="center">
 					<FormControl>
 						<TextField
+							onChange={this.handleVotes}
 							required={true}
 							type="number"
 							defaultValue={this.defaultVotes}
@@ -68,7 +97,11 @@ export default class CreateRoomPage extends Component {
 					</FormControl>
 				</Grid>
 				<Grid item xs={12} align="center">
-					<Button color="primary" variant="contained">
+					<Button
+						onClick={this.handleCreateRoom}
+						color="primary"
+						variant="contained"
+					>
 						Create A Room
 					</Button>
 				</Grid>
