@@ -1,5 +1,15 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	Redirect,
+} from "react-router-dom";
+import RoomJoinPage from "./RoomJoinPage";
+import CreateRoomPage from "./CreateRoomPage";
+import Room from "./Room";
 import HomePage from "./HomePage";
 
 export default class App extends Component {
@@ -10,7 +20,14 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="center">
-				<HomePage />
+				<Router>
+					<Switch>
+						<Route exact path="/" component={HomePage} />
+						<Route path="/join" component={RoomJoinPage} />
+						<Route path="/create" component={CreateRoomPage} />
+						<Route path="/room/:roomCode" component={Room} />
+					</Switch>
+				</Router>
 			</div>
 		);
 	}
