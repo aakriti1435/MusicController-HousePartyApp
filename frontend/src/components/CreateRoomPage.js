@@ -12,6 +12,7 @@ import {
 	Collapse,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import Alert from "@material-ui/lab/Alert";
 
 export default class CreateRoomPage extends Component {
 	static defaultProps = {
@@ -89,6 +90,7 @@ export default class CreateRoomPage extends Component {
 						errorMsg: "Error Updating Room Settings",
 					});
 				}
+				this.props.updateCallBack();
 			})
 			.catch((error) => console.log(error));
 	}
@@ -143,7 +145,25 @@ export default class CreateRoomPage extends Component {
 							this.state.successMsg != ""
 						}
 					>
-						{this.state.successMsg}
+						{this.state.successMsg != "" ? (
+							<Alert
+								severity="success"
+								onClose={() => {
+									this.setState({ successMsg: "" });
+								}}
+							>
+								{this.state.successMsg}
+							</Alert>
+						) : (
+							<Alert
+								severity="error"
+								onClose={() => {
+									this.setState({ errorMsg: "" });
+								}}
+							>
+								{this.state.errorMsg}
+							</Alert>
+						)}
 					</Collapse>
 				</Grid>
 				<Grid item xs={12} align="center">
