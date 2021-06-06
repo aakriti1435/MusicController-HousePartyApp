@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     'handleApi.apps.HandleapiConfig',
     'frontend.apps.FrontendConfig',
-    'rest_framework'
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
