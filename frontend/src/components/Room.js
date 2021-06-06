@@ -16,7 +16,13 @@ export default class Room extends Component {
 
 	getRoomDetails() {
 		fetch("/api/get-room" + "?code=" + this.roomCode)
-			.then((response) => response.json())
+			.then((response) => {
+				if (!response.ok) {
+					this.props.leaveRoomCallBack();
+					this.props.history.push("/");
+				}
+				return response.json();
+			})
 			.then((data) => {
 				this.setState({
 					votesToSkip: data.votesToSkip,
@@ -33,9 +39,12 @@ export default class Room extends Component {
 			headers: { "Content-Type": "application/json" },
 		};
 
-		fetch("/api/leave-room", requestOptions).then((_response) => {
-			this.props.history.push("/");
-		});
+		fetch("/api/leave-room/", requestOptions)
+			.then((_response) => {
+				this.props.leaveRoomCallBack();
+				this.props.history.push("/");
+			})
+			.catch((error) => console.log(error));
 	}
 
 	render() {
