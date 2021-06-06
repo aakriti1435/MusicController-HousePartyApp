@@ -11,6 +11,7 @@ import RoomJoinPage from "./RoomJoinPage";
 import CreateRoomPage from "./CreateRoomPage";
 import Room from "./Room";
 import HomePage from "./HomePage";
+import Info from "./Info";
 
 export default class App extends Component {
 	constructor(props) {
@@ -60,6 +61,7 @@ export default class App extends Component {
 						/>
 						<Route path="/join" component={RoomJoinPage} />
 						<Route path="/create" component={CreateRoomPage} />
+						<Route path="/info" component={Info} />
 						<Route
 							path="/room/:roomCode"
 							render={(props) => {
