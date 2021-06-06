@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from requests import Request, post
 from rest_framework import status
 from rest_framework.response import Response
-from .utils import update_or_create_user_tokens
+from .utils import update_or_create_user_tokens,is_spotify_authenticated
 
 
 # Create your views here.
